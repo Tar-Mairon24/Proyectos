@@ -130,6 +130,7 @@ public:
             std::cout << "  | \n";
             std::cout << "  | \n";
             std::cout << " \\\'/ \n\n";
+    
             if(h(cur->data, goal) != 0)
                 std::cout << "Explorando nivel: " << cur->level + 1 << std::endl;
             else {
