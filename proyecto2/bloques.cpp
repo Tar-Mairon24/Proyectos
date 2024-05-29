@@ -135,7 +135,7 @@ public:
             else {
                 std::cout << "Estado final encontrado" << std::endl;
                 std::cout << "f' final = " << f(cur, goal) << std::endl;
-                std::cout << "Numero de pasos: " << cur->level + 1 << std::endl;
+                std::cout << "Numero de pasos: " << cur->level << std::endl;
             }
             for (auto &i : cur->data) {
                 for (auto &j : i) {
@@ -156,7 +156,16 @@ public:
                     }
                     std::cout << "\n";
                 }
-                open.push_back(i); // Agrega el hijo a la lista abierta
+                bool foundInClosed = false;
+                for (auto &closedNode : closed) {
+                    if (closedNode->data == i->data) {
+                        foundInClosed = true;
+                        break;
+                    }
+                }
+                if (!foundInClosed) {
+                    open.push_back(i);
+                }
             }
             closed.push_back(cur); // Agrega el nodo actual a la lista cerrada
             open.erase(open.begin()); // Elimina el nodo actual de la lista abierta
